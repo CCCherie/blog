@@ -28,6 +28,8 @@ class Tag(models.Model):                             #标签类
  
 class Post(models.Model):
 
+    # 记录文章阅读量 editable=false 不可后台修改
+    views = models.PositiveIntegerField(default=0,editable=False)
     # 文章标题
     title = models.CharField(max_length=70)
  
@@ -89,3 +91,7 @@ class Post(models.Model):
         verbose_name = '文章'
         verbose_name_plural = verbose_name
         ordering = ['-created_time','-modified_time']
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])  #将+1之后的值存到数据库，update_fields限定更新的字段

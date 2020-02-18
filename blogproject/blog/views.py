@@ -16,6 +16,9 @@ def index(request):
 def detail(request,pk):
     #根据URL捕获的PK在数据库取出记录，并传给模板渲染（不存在则返回404）
     post = get_object_or_404(Post, pk=pk)
+    
+    post.increase_views() # 阅读量+1
+
     post.body = markdown.markdown(post.body,
                                     extensions=[
                                     'markdown.extensions.extra',
