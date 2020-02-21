@@ -21,6 +21,9 @@ class IndexView(PaginationMixin,ListView):
     template_name = 'blog/index.html'  # 指定视图渲染的模板
     context_object_name = 'post_list'  # 指定数据保存的变量名，传给模板
     paginate_by = 5  # 分页
+#    t = time.time()
+#    return HttpResponse("时间：{}".format(str(t)))
+    
 
 def detail(request,pk):
     #根据URL捕获的PK在数据库取出记录，并传给模板渲染（不存在则返回404）
